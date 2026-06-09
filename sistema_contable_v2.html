@@ -203,13 +203,10 @@ console.log('✅ Firebase conectado — ContaBank Multiempresa');
   .status-item { display: flex; gap: 5px; align-items: center; }
   .status-dot { width: 7px; height: 7px; border-radius: 50%; }
 </style>
-  <!-- PDF Server URL config — se sobreescribe con config.js en produccion -->
+  <!-- PDF Server URL — editá esta URL con la de tu servidor Railway -->
   <script>
-    // En produccion, config.js define window.PDF_SERVER_URL
-    // En local, usa localhost:5050 por defecto
-    if (!window.PDF_SERVER_URL) window.PDF_SERVER_URL = '';
+    window.PDF_SERVER_URL = 'https://REEMPLAZAR-CON-TU-URL.up.railway.app';
   </script>
-  <script src="config.js" onerror="console.log('config.js no encontrado, usando localhost')"></script>
 </head>
 <body>
 
@@ -1422,9 +1419,7 @@ async function extractTextFromPDF(file) {
         lines.push(sorted.map(it => it.str).join('  ').trim());
       }
     }
-    fullText += lines.join('
-') + '
-';
+    fullText += lines.join('\n') + '\n';
   }
   return fullText;
 }
